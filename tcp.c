@@ -214,7 +214,7 @@ void LogData(unsigned char *buffer, int size)
 {
     int i, j, a=0, b=16;
     for (i = 0; i < size; i++) {
-        if (i != 0 && i % 16 == 0) { // One line of hex printing is complete
+        if (i != 0 && i % 16 == 0) { // i가 16이면 한줄끝
 
             for (j = i - 16; j < i; j++) {
                 if (buffer[j] >= 32 && buffer[j] <= 128) {
