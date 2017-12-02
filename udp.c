@@ -182,39 +182,35 @@ void LogUdpPacket(unsigned char *buffer, int size, char *pip_so){
 
 void LogData(unsigned char *buffer, int size)
 {
-    int i, j;
+    int i, j, a=0, b=16;
     for (i = 0; i < size; i++) {
-        if (i != 0 && i % 16 == 0) { 
-            fprintf(logfile, "         ");
+        if (i != 0 && i % 16 == 0) { // i가 16이면 한줄끝
 
             for (j = i - 16; j < i; j++) {
                 if (buffer[j] >= 32 && buffer[j] <= 128) {
-                    fprintf(logfile, "%c", (unsigned char) buffer[j]);
+                    fprintf(logfile, " %c", (unsigned char) buffer[j]); // 문자하나씩 버퍼에서
                 } else {
-                    fprintf(logfile, "."); 
+                    fprintf(logfile, "  "); // 없으면 공백찍는다
                 }
-
-                fprintf(logfile, "\n");
             }
+            fprintf(logfile,"\t\n");
         }
 
         if (i % 16 == 0) {
-            fprintf(logfile, "\n");
+            fprintf(logfile, "");
         }
         fprintf(logfile, " %02X", (unsigned int) buffer[i]);
-
-        if (i == size - 1) {
+         
+        if (i == size - 1) { 
             for(j = 0; j < 15 - i % 16; j++)  {
-                fprintf(logfile, "   "); 
+                fprintf(logfile, "  "); //여백
             }
-
-            fprintf(logfile, "         ");
 
             for(j = i - i % 16; j <= i; j++) {
                 if(buffer[j] >= 32 && buffer[j] <= 128) {
-                    fprintf(logfile, "%c", (unsigned char) buffer[j]);
+                    fprintf(logfile, " %c", (unsigned char) buffer[j]);
                 } else {
-                    fprintf(logfile, ".");
+                    fprintf(logfile, "  ");
                 }
             }
 
