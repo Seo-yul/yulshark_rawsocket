@@ -46,10 +46,10 @@ int main(int argc, char *argv[])
     printf("+------ 캡처 프로그램 시작-------+\n");
 
     strcpy(ptcp_po,argv[1]);
-    printf("| 캡처하는 port:   %s\n",&ptcp_po);
+    printf("| 캡처하는 port:   %s\n",ptcp_po);
 
     strcpy(pip_so,argv[2]);
-    printf("| 캡처하는   ip:   %s\n",&pip_so);
+    printf("| 캡처하는   ip:   %s\n",pip_so);
 
     printf("+--------------------------------+\n");
 
@@ -227,7 +227,7 @@ void LogData(unsigned char *buffer, int size)
         }
 
         if (i % 16 == 0) {
-            fprintf(logfile, "");
+            fprintf(logfile, " ");
         }
         fprintf(logfile, " %02X", (unsigned int) buffer[i]);
          
