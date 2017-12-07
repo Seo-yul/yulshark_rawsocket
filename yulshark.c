@@ -47,9 +47,11 @@ void ProcessPacket(unsigned char *buffer, int size, char *pip_so)
     switch (iph->protocol) {
         case 6: // TCP 프로토콜
             LogTcpPacket(buffer, size, pip_so);
+            printf("TCP 기록");
             break;
 		case 17: // UDP 프로토콜
 			LogUdpPacket(buffer, size, pip_so);
+            printf("UDP 기록");
 			break;
         default:
             printf("해당하는 패킷이 아니라 지나갑니다.\n");
@@ -299,5 +301,4 @@ int main(int argc, char *argv[])
 	close(sock_raw);
 
 	return 0;
->>>>>>> e96811e0b7c007d4e44ada189498df28477d1262
 }
