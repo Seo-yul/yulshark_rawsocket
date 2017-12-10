@@ -54,7 +54,7 @@ void ProcessPacket(unsigned char *buffer, int size, char *pip_so)
             printf("UDP 기록 중..\t");
 			break;
         default:
-            printf("해당하는 패킷이 아니라 지나가는 중..\t");
+            printf("패킷 통과 중..\t");
     }
 }
 
@@ -87,7 +87,7 @@ void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
     fprintf(logfile, "\n");
     fprintf(logfile, "IP Header\n");
     fprintf(logfile, " + IP Version          : %d\n", (unsigned int) iph->version);
-    fprintf(logfile, " | P Header Length    : %d DWORDS or %d Bytes\n", (unsigned int) iph->ihl, ((unsigned int) (iph->ihl)) * 4);
+    fprintf(logfile, " | IP Header Length    : %d DWORDS or %d Bytes\n", (unsigned int) iph->ihl, ((unsigned int) (iph->ihl)) * 4);
     fprintf(logfile, " | Type Of Service     : %d\n", (unsigned int) iph->tos);
     fprintf(logfile, " | IP Total Length     : %d  Bytes (Size of Packet)\n", ntohs(iph->tot_len));
     fprintf(logfile, " | TTL                 : %d\n", (unsigned int) iph->ttl);
