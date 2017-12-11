@@ -95,7 +95,7 @@ void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
     fprintf(logfile, " + IP Version          : %d\n", (unsigned int) iph->version);
     fprintf(logfile, " | IP Header Length    : %d Bytes\n", ((unsigned int) (iph->ihl)) * 4);
     fprintf(logfile, " | Type Of Service     : %d\n", (unsigned int) iph->tos);
-    fprintf(logfile, " | IP Total Length     : %d  Bytes (Size of Packet)\n", ntohs(iph->tot_len));
+    fprintf(logfile, " | IP Total Length     : %d  Bytes (패킷의 전체크기)\n", ntohs(iph->tot_len));
     fprintf(logfile, " | TTL                 : %d\n", (unsigned int) iph->ttl);
     fprintf(logfile, " | Protocol            : %d\n", (unsigned int) iph->protocol);
     fprintf(logfile, " | Checksum            : %d\n", ntohs(iph->check));
@@ -125,12 +125,11 @@ void LogTcpPacket(unsigned char *buffer, int size, char *pip_so)
         fprintf(logfile, " | Sequence Number      : %u\n", ntohl(tcph->seq));
         fprintf(logfile, " | Acknowledge Number   : %u\n", ntohl(tcph->ack_seq));
         fprintf(logfile, " | Header Length        : %d BYTES\n", (unsigned int) tcph->doff * 4);
-        fprintf(logfile, " | Urgent Flag          : %d\n", (unsigned int) tcph->urg);
         fprintf(logfile, " | Acknowledgement Flag : %d\n", (unsigned int) tcph->ack);
         fprintf(logfile, " | Finish Flag          : %d\n", (unsigned int) tcph->fin);
         fprintf(logfile, " + Checksum             : %d\n", ntohs(tcph->check));
         fprintf(logfile, "\n");
-        fprintf(logfile, "                        DATA Dump                         ");
+        fprintf(logfile, "                        DATA 덤프                         ");
 
         fprintf(logfile, "\n");
 
