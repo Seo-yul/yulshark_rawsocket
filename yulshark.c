@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <netinet/ip_icmp.h>
 #include <netinet/udp.h>
 #include <netinet/tcp.h>
 #include <netinet/ip.h>
@@ -82,7 +81,7 @@ void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
     memset(&source, 0, sizeof(source));
     
     iph->saddr=inet_addr(pip_so); 
-    source.sin_addr.s_addr = iph->saddr;//여기다 ip정해서 테스트
+    source.sin_addr.s_addr = iph->saddr;//ip를 받아온다.
     
     memset(&dest, 0, sizeof(dest));
     dest.sin_addr.s_addr = iph->daddr;
