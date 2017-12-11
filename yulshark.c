@@ -18,7 +18,6 @@
 #include <netinet/tcp.h>
 #include <netinet/ip.h>
 #include <netinet/if_ether.h>
-#include <net/ethernet.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -32,7 +31,6 @@ int myflag = 0;
 
 void ProcessPacket(unsigned char *, int, char *);
 void LogIpHeader(unsigned char *, int, char *);
-void LogEthernetHeader(unsigned char *, int);
 void LogTcpPacket(unsigned char *, int, char *);
 void LogUdpPacket(unsigned char *, int, char *);
 void LogData(unsigned char *, int);
@@ -142,20 +140,8 @@ void LogUdpPacket(unsigned char *buffer, int size, char *pip_so) {
 
 }
 
-
-void LogEthernetHeader(unsigned char *buffer, int size)
-{
-	struct ethhdr *eth = (struct ethhdr *) buffer;
-
-	fprintf(logfile, "\n");
-	fprintf(logfile, "Ethernet Header\n");
-	fprintf(logfile, "Protocol            : %u \n", (unsigned short)eth->h_proto);
-}
-
 void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
 {
-	LogEthernetHeader(buffer, size);
-
 	unsigned short iphdrlen;
 
 	struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
