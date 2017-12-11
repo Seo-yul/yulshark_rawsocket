@@ -29,6 +29,7 @@
 FILE *logfile;
 int sock_raw;
 struct sockaddr_in source, dest;
+int myflag = 1;
 
 void ProcessPacket(unsigned char *, int, char *);
 void LogIpHeader(unsigned char *, int, char *);
@@ -50,8 +51,10 @@ void ProcessPacket(unsigned char *buffer, int size, char *pip_so)
             printf("TCP 기록 중..\t");
             break;
 		case 17: // UDP 프로토콜
+            if(myflag==2){
 			LogUdpPacket(buffer, size, pip_so);
             printf("UDP 기록 중..\t");
+            }
 			break;
         default:
             printf("패킷 통과 중..\t");
@@ -268,6 +271,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	else if (!strcmp(p_port, "dns")) {
+        myflag = 2;
 		logfile = fopen("log_dns.txt", "w");
 		printf("log_dns.txt로 기록을 시작합니다..\n");
 		if (logfile == NULL) {
