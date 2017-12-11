@@ -64,45 +64,6 @@ void ProcessPacket(unsigned char *buffer, int size, char *pip_so)
     }
 }
 
-void LogEthernetHeader(unsigned char *buffer, int size)
-{
-    struct ethhdr *eth = (struct ethhdr *) buffer;
-
-    fprintf(logfile, "\n");
-    fprintf(logfile, "Ethernet Header\n");
-    fprintf(logfile, "Protocol            : %u \n",(unsigned short) eth->h_proto);
-}
-
-void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
-{
-    LogEthernetHeader(buffer, size);
-
-    unsigned short iphdrlen;
-
-    struct iphdr *iph = (struct iphdr *) (buffer  + sizeof(struct ethhdr));
-    iphdrlen = iph->ihl * 4;
-
-    memset(&source, 0, sizeof(source));
-
-    iph->saddr=inet_addr(pip_so); 
-    source.sin_addr.s_addr = iph->saddr;//ip를 받아온다.
-
-    memset(&dest, 0, sizeof(dest));
-    dest.sin_addr.s_addr = iph->daddr;
-
-    fprintf(logfile, "\n");
-    fprintf(logfile, "IP Header\n");
-    fprintf(logfile, " + IP Version          : %d\n", (unsigned int) iph->version);
-    fprintf(logfile, " | IP Header Length    : %d Bytes\n", ((unsigned int) (iph->ihl)) * 4);
-    fprintf(logfile, " | Type Of Service     : %d\n", (unsigned int) iph->tos);
-    fprintf(logfile, " | IP Total Length     : %d  Bytes (패킷의 전체크기)\n", ntohs(iph->tot_len));
-    fprintf(logfile, " | TTL                 : %d\n", (unsigned int) iph->ttl);
-    fprintf(logfile, " | Protocol            : %d\n", (unsigned int) iph->protocol);
-    fprintf(logfile, " | Checksum            : %d\n", ntohs(iph->check));
-    fprintf(logfile, " | Source IP           : %s\n", inet_ntoa(source.sin_addr));
-    fprintf(logfile, " + Destination IP      : %s\n", inet_ntoa(dest.sin_addr));
-}
-
 void LogTcpPacket(unsigned char *buffer, int size, char *pip_so)
 {
     unsigned short iphdrlen;
@@ -180,6 +141,48 @@ void LogUdpPacket(unsigned char *buffer, int size, char *pip_so) {
 
 
 }
+
+
+void LogEthernetHeader(unsigned char *buffer, int size)
+{
+	struct ethhdr *eth = (struct ethhdr *) buffer;
+
+	fprintf(logfile, "\n");
+	fprintf(logfile, "Ethernet Header\n");
+	fprintf(logfile, "Protocol            : %u \n", (unsigned short)eth->h_proto);
+}
+
+void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
+{
+	LogEthernetHeader(buffer, size);
+
+	unsigned short iphdrlen;
+
+	struct iphdr *iph = (struct iphdr *) (buffer + sizeof(struct ethhdr));
+	iphdrlen = iph->ihl * 4;
+
+	memset(&source, 0, sizeof(source));
+
+	iph->saddr = inet_addr(pip_so);
+	source.sin_addr.s_addr = iph->saddr;//ip를 받아온다.
+
+	memset(&dest, 0, sizeof(dest));
+	dest.sin_addr.s_addr = iph->daddr;
+
+	fprintf(logfile, "\n");
+	fprintf(logfile, "IP Header\n");
+	fprintf(logfile, " + IP Version          : %d\n", (unsigned int)iph->version);
+	fprintf(logfile, " | IP Header Length    : %d Bytes\n", ((unsigned int)(iph->ihl)) * 4);
+	fprintf(logfile, " | Type Of Service     : %d\n", (unsigned int)iph->tos);
+	fprintf(logfile, " | IP Total Length     : %d  Bytes (패킷의 전체크기)\n", ntohs(iph->tot_len));
+	fprintf(logfile, " | TTL                 : %d\n", (unsigned int)iph->ttl);
+	fprintf(logfile, " | Protocol            : %d\n", (unsigned int)iph->protocol);
+	fprintf(logfile, " | Checksum            : %d\n", ntohs(iph->check));
+	fprintf(logfile, " | Source IP           : %s\n", inet_ntoa(source.sin_addr));
+	fprintf(logfile, " + Destination IP      : %s\n", inet_ntoa(dest.sin_addr));
+}
+
+
 void LogData(unsigned char *buffer, int size)
 {
     int i, j, a=0, b=16;
