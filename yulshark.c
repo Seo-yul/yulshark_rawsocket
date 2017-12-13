@@ -171,15 +171,15 @@ void LogIpHeader(unsigned char *buffer, int size, char * pip_so)
 
 void LogData(unsigned char *buffer, int size)
 {
-    int i, j, a=0, b=16;
-    for (i = 0; i < size; i++) {
-        if (i != 0 && i % 16 == 0) { // i가 16이면 한줄끝
+    int i, j;
+    for (i = 0; i < size; i++) {  //패킷은 16비트씩 구성되있다.
+        if (i != 0 && i % 16 == 0) { // 한줄씩 찍는데 i가 16비트 배수로 떨어지면 문자니까
 
             for (j = i - 16; j < i; j++) {
                 if (buffer[j] >= 32 && buffer[j] <= 128) {
-                    fprintf(logfile, " %c", (unsigned char) buffer[j]); // 문자하나씩 버퍼에서
+                    fprintf(logfile, " %c", (unsigned char) buffer[j]); // 사람 문자로 변환.
                 } else {
-                    fprintf(logfile, "  "); // 없으면 공백찍는다
+                    fprintf(logfile, " *"); // 없으면 공백찍는다.
                 }
             }
             fprintf(logfile,"\t\n");
@@ -188,18 +188,18 @@ void LogData(unsigned char *buffer, int size)
         if (i % 16 == 0) {
             fprintf(logfile, " ");
         }
-        fprintf(logfile, " %02X", (unsigned int) buffer[i]);
+        fprintf(logfile, " %02X", (unsigned int) buffer[i]);//바이트코드 찍어줌
 
-        if (i == size - 1) { 
+        if (i == size - 1) { //공간채워주고
             for(j = 0; j < 15 - i % 16; j++)  {
                 fprintf(logfile, "  "); //여백
             }
 
-            for(j = i - i % 16; j <= i; j++) {
+            for(j = i - i % 16; j <= i; j++) { 
                 if(buffer[j] >= 32 && buffer[j] <= 128) {
                     fprintf(logfile, " %c", (unsigned char) buffer[j]);
                 } else {
-                    fprintf(logfile, "  ");
+                    fprintf(logfile, " *");
                 }
             }
 
