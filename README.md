@@ -5,14 +5,14 @@ using raw socket, http,telnet,ftp,dns,패킷캡처
 ***
 <b>1. 프로젝트 구성과 사용방법</b>
 <pre> 
-c 파일          실행파일
-tcp.c           shark_tcp
-udp.c           shark_udp
+c 파일             실행파일
+yulshark.c         shark
+
 </pre>
 <b>2. 캡처 실행 방법</b>
 <pre> 
-$ shark_tcp "프로토콜명" "ip 주소"
-$ shark_upd "프로토콜명" "ip 주소"
+$ shark "프로토콜명" "ip 주소"
+
 </pre>
 <b>3. 결과 생성파일</b>
 <pre> 
@@ -25,6 +25,6 @@ dns    ->    log_dns.txt
 <b>4. 작성자</b>
 <pre> 
 seoyulsay
-                02. 12. 2017
+                01. 11. 2018
 </pre>
 ***
