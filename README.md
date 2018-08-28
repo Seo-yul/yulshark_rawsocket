@@ -24,7 +24,7 @@ dns    ->    log_dns.txt
 
 <b>4. 작성자</b>
 <pre> 
-seoyulsay
+Yoon SeoYul
                 01. 11. 2018
 </pre>
 ***
