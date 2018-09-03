@@ -23,7 +23,10 @@ dns    ->    log_dns.txt
 </pre>
 <b>4. 결과 예시</b>
 <pre>
-![image](https://user-images.githubusercontent.com/19742930/44986208-e75b4c00-afbd-11e8-80da-61f032982ec5.png)
+<b>http</b>
+<div>
+<img src="https://user-images.githubusercontent.com/19742930/44986233-fb9f4900-afbd-11e8-9236-02d69ef2ba74.png">
+</div>
 </pre>
 <b>5. 작성자</b>
 <pre> 
