@@ -25,6 +25,7 @@ dns    ->    log_dns.txt
 <pre>
 <b>http</b>
 <div>
+<img src="https://user-images.githubusercontent.com/19742930/44986231-fa6e1c00-afbd-11e8-8d12-aed8baa492b6.png">
 <img src="https://user-images.githubusercontent.com/19742930/44986233-fb9f4900-afbd-11e8-9236-02d69ef2ba74.png">
 </div>
 </pre>
