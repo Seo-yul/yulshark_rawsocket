@@ -4,7 +4,7 @@
  *            두번째 파라매터값으로 source ip를 입력하면 됩니다.
  * 파일의 손상, 수정으로 인해 재 다운을 원하거나 오류가 수정된 최신 코드는
  *
- * https://github.com/seoyulsay/yulshark_rawsocket.git 에서 다운받으실수 있습니다.
+ * https://github.com/YOONSEOYUL/yulshark_rawsocket.git 에서 다운받으실수 있습니다.
  *
  * 해당 코드는 사용 프로토콜을 파라미터로 받으나 캡처를 각각 하는게 아닌 log 파일만을 다르게 생성해줍니다.
  *
