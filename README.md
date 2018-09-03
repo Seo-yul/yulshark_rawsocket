@@ -21,8 +21,11 @@ ftp    ->    log_ftp.txt
 telnet -> log_telnet.txt
 dns    ->    log_dns.txt
 </pre>
-
-<b>4. 작성자</b>
+<b>4. 결과 예시</b>
+<pre>
+![image](https://user-images.githubusercontent.com/19742930/44986208-e75b4c00-afbd-11e8-80da-61f032982ec5.png)
+</pre>
+<b>5. 작성자</b>
 <pre> 
 Yoon SeoYul
                 01. 11. 2018
